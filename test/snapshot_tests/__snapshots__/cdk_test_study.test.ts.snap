@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CdkTestStudyStack snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet1RouteTableAssociationAD59FD5B": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "CdkTestStudyVpcCdkTestStudyPrivateSubnet1RouteTableBB6508F0",
+        },
+        "SubnetId": {
+          "Ref": "CdkTestStudyVpcCdkTestStudyPrivateSubnet1Subnet8D6AE612",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet1RouteTableBB6508F0": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "MyTestStack/CdkTestStudyVpc/CdkTestStudyPrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "CdkTestStudyVpcD7D81CBC",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet1Subnet8D6AE612": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "CdkTestStudyPrivate",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "MyTestStack/CdkTestStudyVpc/CdkTestStudyPrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "CdkTestStudyVpcD7D81CBC",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "CdkTestStudyVpcD7D81CBC": {
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "MyTestStack/CdkTestStudyVpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
