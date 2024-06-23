@@ -32,15 +32,23 @@ describe('CdkTestStudyStack', () => {
   });
 
   // Subnet
-  test('Subnetが2つ存在すること', () => {
-    template.resourceCountIs("AWS::EC2::Subnet", 2);
-  });
+  // テストを2つ書く場合
+  // test('Subnetが2つ存在すること', () => {
+  //   template.resourceCountIs("AWS::EC2::Subnet", 2);
+  // });
 
-  test('SubnetはすべてPrivate Subnetであること', () => {
-    template.allResourcesProperties("AWS::EC2::Subnet",
-      {
-        MapPublicIpOnLaunch: false,
-      }
-    );
+  // test('SubnetはすべてPrivate Subnetであること', () => {
+  //   template.allResourcesProperties("AWS::EC2::Subnet",
+  //     {
+  //       MapPublicIpOnLaunch: false,
+  //     }
+  //   );
+  // });
+
+  // 1つのテストにまとめる場合
+  test("Private Subnetが2つ存在する", () => {
+    template.resourcePropertiesCountIs("AWS::EC2::Subnet", {
+      MapPublicIpOnLaunch: false,
+    }, 2);
   });
 })
