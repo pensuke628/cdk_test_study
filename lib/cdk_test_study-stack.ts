@@ -7,7 +7,7 @@ export class CdkTestStudyStack extends cdk.Stack {
     super(scope, id, props);
 
     new ec2.Vpc(this, 'CdkTestStudyVpc', {
-      maxAzs: 1,
+      maxAzs: 2,
       natGateways: 0,
       subnetConfiguration: [
         {

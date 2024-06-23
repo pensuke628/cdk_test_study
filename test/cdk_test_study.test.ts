@@ -32,8 +32,8 @@ describe('CdkTestStudyStack', () => {
   });
 
   // Subnet
-  test('Subnetが1つ存在すること', () => {
-    template.resourceCountIs("AWS::EC2::Subnet", 1);
+  test('Subnetが2つ存在すること', () => {
+    template.resourceCountIs("AWS::EC2::Subnet", 2);
   });
 
   test('SubnetはすべてPrivate Subnetであること', () => {
