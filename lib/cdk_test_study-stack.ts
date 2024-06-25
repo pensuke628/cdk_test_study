@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import { NagSuppressions } from 'cdk-nag';
 
 export class CdkTestStudyStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -17,9 +18,16 @@ export class CdkTestStudyStack extends cdk.Stack {
         }
       ]
     });
-
-    new ec2.FlowLog(this, 'CdkTestStudyVpcFlowLog', {
-      resourceType: ec2.FlowLogResourceType.fromVpc(vpc),
-    });
+    // nagに対応する場合、VpcFlowLogを追加する
+    // new ec2.FlowLog(this, 'CdkTestStudyVpcFlowLog', {
+    //   resourceType: ec2.FlowLogResourceType.fromVpc(vpc),
+    // });
+    // ルールを抑制した場合、suppressionを追加する
+    NagSuppressions.addResourceSuppressions(vpc, [
+      {
+        id: 'AwsSolutions-VPC7',
+        reason: 'This is a test'
+      },
+    ]);
   }
 }

@@ -53,9 +53,10 @@ describe('CdkTestStudyStack', () => {
   });
 
   // FlowLog
-  test ('VpcFlowLogが1つ存在すること', () => {
-    template.resourcePropertiesCountIs("AWS::EC2::FlowLog", {
-      ResourceType: "VPC",
-    }, 1);
-  });
+  // nagに対応する場合、VpcFlowLogを追加する
+  // test ('VpcFlowLogが1つ存在すること', () => {
+  //   template.resourcePropertiesCountIs("AWS::EC2::FlowLog", {
+  //     ResourceType: "VPC",
+  //   }, 1);
+  // });
 })

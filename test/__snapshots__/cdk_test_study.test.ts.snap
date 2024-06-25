@@ -125,6 +125,16 @@ exports[`CdkTestStudyStack snapshot 1`] = `
       "Type": "AWS::EC2::Subnet",
     },
     "CdkTestStudyVpcD7D81CBC": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-VPC7",
+              "reason": "This is a test",
+            },
+          ],
+        },
+      },
       "Properties": {
         "CidrBlock": "10.0.0.0/16",
         "EnableDnsHostnames": true,
@@ -138,109 +148,6 @@ exports[`CdkTestStudyStack snapshot 1`] = `
         ],
       },
       "Type": "AWS::EC2::VPC",
-    },
-    "CdkTestStudyVpcFlowLog730870D1": {
-      "Properties": {
-        "DeliverLogsPermissionArn": {
-          "Fn::GetAtt": [
-            "CdkTestStudyVpcFlowLogIAMRoleA656254A",
-            "Arn",
-          ],
-        },
-        "LogDestinationType": "cloud-watch-logs",
-        "LogGroupName": {
-          "Ref": "CdkTestStudyVpcFlowLogLogGroup0ECEBEC6",
-        },
-        "ResourceId": {
-          "Ref": "CdkTestStudyVpcD7D81CBC",
-        },
-        "ResourceType": "VPC",
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "MyTestStack/CdkTestStudyVpcFlowLog",
-          },
-        ],
-        "TrafficType": "ALL",
-      },
-      "Type": "AWS::EC2::FlowLog",
-    },
-    "CdkTestStudyVpcFlowLogIAMRoleA656254A": {
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "vpc-flow-logs.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "MyTestStack/CdkTestStudyVpcFlowLog",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "CdkTestStudyVpcFlowLogIAMRoleDefaultPolicy03FFE708": {
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents",
-                "logs:DescribeLogStreams",
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "CdkTestStudyVpcFlowLogLogGroup0ECEBEC6",
-                  "Arn",
-                ],
-              },
-            },
-            {
-              "Action": "iam:PassRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "CdkTestStudyVpcFlowLogIAMRoleA656254A",
-                  "Arn",
-                ],
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "CdkTestStudyVpcFlowLogIAMRoleDefaultPolicy03FFE708",
-        "Roles": [
-          {
-            "Ref": "CdkTestStudyVpcFlowLogIAMRoleA656254A",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
-    },
-    "CdkTestStudyVpcFlowLogLogGroup0ECEBEC6": {
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "RetentionInDays": 731,
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "MyTestStack/CdkTestStudyVpcFlowLog",
-          },
-        ],
-      },
-      "Type": "AWS::Logs::LogGroup",
-      "UpdateReplacePolicy": "Retain",
     },
   },
   "Rules": {
