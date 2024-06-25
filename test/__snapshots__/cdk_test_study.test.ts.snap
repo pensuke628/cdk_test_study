@@ -67,6 +67,63 @@ exports[`CdkTestStudyStack snapshot 1`] = `
       },
       "Type": "AWS::EC2::Subnet",
     },
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet2RouteTableAssociation9690DDA4": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "CdkTestStudyVpcCdkTestStudyPrivateSubnet2RouteTableEAA6E089",
+        },
+        "SubnetId": {
+          "Ref": "CdkTestStudyVpcCdkTestStudyPrivateSubnet2SubnetEF7C3034",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet2RouteTableEAA6E089": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "MyTestStack/CdkTestStudyVpc/CdkTestStudyPrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "CdkTestStudyVpcD7D81CBC",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "CdkTestStudyVpcCdkTestStudyPrivateSubnet2SubnetEF7C3034": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.1.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "CdkTestStudyPrivate",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "MyTestStack/CdkTestStudyVpc/CdkTestStudyPrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "CdkTestStudyVpcD7D81CBC",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
     "CdkTestStudyVpcD7D81CBC": {
       "Properties": {
         "CidrBlock": "10.0.0.0/16",
