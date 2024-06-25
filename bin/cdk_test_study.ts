@@ -2,8 +2,13 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { CdkTestStudyStack } from '../lib/cdk_test_study-stack';
+import { AwsSolutionsChecks } from 'cdk-nag';
+import { Aspects } from 'aws-cdk-lib';
 
 const app = new cdk.App();
+Aspects.of(app).add(new AwsSolutionsChecks({
+  verbose: true
+}));
 new CdkTestStudyStack(app, 'CdkTestStudyStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,

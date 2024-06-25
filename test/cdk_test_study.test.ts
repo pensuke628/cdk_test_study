@@ -51,4 +51,11 @@ describe('CdkTestStudyStack', () => {
       MapPublicIpOnLaunch: false,
     }, 2);
   });
+
+  // FlowLog
+  test ('VpcFlowLogが1つ存在すること', () => {
+    template.resourcePropertiesCountIs("AWS::EC2::FlowLog", {
+      ResourceType: "VPC",
+    }, 1);
+  });
 })
