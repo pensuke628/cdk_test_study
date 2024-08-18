@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CdkTestStudyStack snapshot 1`] = `
+exports[`snapshot 1`] = `
 {
+  "Outputs": {
+    "S3BucketName": {
+      "Value": {
+        "Ref": "CdkTestStudyBucket13535E829",
+      },
+    },
+  },
   "Parameters": {
     "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
@@ -10,6 +17,73 @@ exports[`CdkTestStudyStack snapshot 1`] = `
     },
   },
   "Resources": {
+    "CdkTestStudyBucket13535E829": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "BucketName": "hogehoge",
+        "ObjectLockEnabled": true,
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "CdkTestStudyBucket1Policy7456DFD1": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "CdkTestStudyBucket13535E829",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "CdkTestStudyBucket13535E829",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "CdkTestStudyBucket13535E829",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "CdkTestStudyBucket2D584685D": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "ObjectLockEnabled": true,
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
     "CdkTestStudyVpcCdkTestStudyPrivateSubnet1RouteTableAssociationAD59FD5B": {
       "Properties": {
         "RouteTableId": {
