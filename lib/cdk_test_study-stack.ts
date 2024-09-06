@@ -7,7 +7,7 @@ export class CdkTestStudyStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new ec2.Vpc(this, 'CdkTestStudyVpc', {
+    const vpc = new ec2.Vpc(this, 'CdkTestStudyVpc', {
       maxAzs: 2,
       natGateways: 0,
       subnetConfiguration: [
@@ -18,6 +18,7 @@ export class CdkTestStudyStack extends cdk.Stack {
         }
       ]
     });
+    cdk.Tags.of(vpc).add('CreatedBy', 'CDK');
 
     const Bucket = new s3.Bucket(this, 'CdkTestStudyBucket1', {
       bucketName: 'hogehoge',
