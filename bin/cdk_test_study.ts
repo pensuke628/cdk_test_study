@@ -4,7 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { CdkTestStudyStack } from '../lib/cdk_test_study-stack';
 
 const app = new cdk.App();
-new CdkTestStudyStack(app, 'CdkTestStudyStack', {
+const stack = new CdkTestStudyStack(app, 'CdkTestStudyStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -19,3 +19,4 @@ new CdkTestStudyStack(app, 'CdkTestStudyStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+cdk.Tags.of(stack).add('Environment', 'Development');
