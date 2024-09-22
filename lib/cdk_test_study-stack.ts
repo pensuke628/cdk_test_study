@@ -2,10 +2,15 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as s3 from 'aws-cdk-lib/aws-s3';
+// import { StaticSite } from './construct/static_site';
 
 export class CdkTestStudyStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+    // new StaticSite(this, 'StaticSite', {
+    //   staticContentPath: './app',
+    // });
 
     const vpc = new ec2.Vpc(this, 'CdkTestStudyVpc', {
       maxAzs: 2,
